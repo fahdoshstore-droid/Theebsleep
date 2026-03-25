@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>ذيب — نظام النوم العصبي الروحاني</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- خطوط مقترحة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --void:#020408;
+      --navy:#071428;
+      --navy-soft:#0a1f3d;
+      --gold:#c9933a;
+      --gold-soft:#e0af55;
+      --text:#dce8f5;
+      --text-mid:#8ba8c4;
+      --border:rgba(100,160,220,0.16);
+      --card-bg:rgba(7,20,40,0.96);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Cairo',sans-serif;
+      background:radial-gradient(circle at top,#071428 0%,#020408 55%);
+      color:var(--text);
+      line-height:1.8;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .page{
+      max-width:1120px;
+      margin:0 auto;
+      padding:24px 18px 60px;
+    }
+
+    /* NAV */
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 0 24px;
+    }
+    .nav-brand-ar{
+      font-family:'Amiri',serif;
+      font-size:26px;
+      font-weight:700;
+      color:var(--gold-soft);
+    }
+    .nav-brand-en{
+      font-size:10px;
+      color:var(--text-mid);
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+    .nav-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:12px;
+      color:var(--text-mid);
+    }
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+      gap:36px;
+      align-items:center;
+      padding:32px 0 40px;
+    }
+    .hero-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 12px;
+      font-size:10px;
+      letter-spacing:2px;
+      border:1px solid rgba(201,147,58,0.4);
+      color:var(--gold-soft);
+      background:rgba(201,147,58,0.08);
+      margin-bottom:18px;
+    }
+    .hero h1{
+      font-family:'Amiri',serif;
+      font-size:clamp(32px,5vw,44px);
+      line-height:1.4;
+      margin-bottom:14px;
+    }
+    .g{color:var(--gold-soft);}
+    .b{color:#5eaef0;}
+
+    .hero p{
+      font-size:15px;
+      color:var(--text-mid);
+      margin-bottom:22px;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:26px;
+    }
+    .btn-p,.btn-o{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 22px;
+      font-size:11px;
+      letter-spacing:2px;
+      border-radius:3px;
+      cursor:pointer;
+      border:1px solid transparent;
+      transition:all .2s;
+      text-transform:uppercase;
+    }
+    .btn-p{
+      background:var(--gold);
+      color:#020408;
+      border-color:var(--gold);
+    }
+    .btn-p:hover{
+      background:var(--gold-soft);
+    }
+    .btn-o{
+      background:transparent;
+      color:var(--text);
+      border-color:var(--border);
+    }
+    .btn-o:hover{
+      border-color:var(--gold);
+      color:var(--gold-soft);
+    }
+
+    .hero-metrics{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .metric{
+      min-width:120px;
+      padding:10px 14px;
+      border-radius:4px;
+      border:1px solid var(--border);
+      background:rgba(7,20,40,0.9);
+      text-align:center;
+    }
+    .metric .num{
+      font-family:'Amiri',serif;
+      font-size:26px;
+      font-weight:700;
+      margin-bottom:2px;
+    }
+    .metric-label{
+      font-size:11px;
+      color:var(--text-mid);
+      letter-spacing:1px;
+    }
+
+    .hero-mock{
+      border-radius:14px;
+      border:1px solid rgba(100,160,220,0.3);
+      background:radial-gradient(circle at top,#0a1f3d 0%,#020408 80%);
+      padding:20px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-badge{
+      position:absolute;
+      top:14px;
+      left:14px;
+      font-size:10px;
+      color:var(--text-mid);
+      background:rgba(2,4,8,0.8);
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(201,147,58,0.3);
+    }
+    .hero-phone{
+      width:82%;
+      margin:32px auto 8px;
+      aspect-ratio:9/18;
+      border-radius:28px;
+      border:1px solid rgba(220,232,245,0.12);
+      background:linear-gradient(145deg,#020408,#071428);
+      padding:10px;
+      position:relative;
+    }
+    .hero-phone-inner{
+      width:100%;
+      height:100%;
+      border-radius:22px;
+      background:radial-gradient(circle at top,#1a3a60 0%,#020408 68%);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .hero-phone-title{
+      font-size:13px;
+      margin-bottom:4px;
+    }
+    .hero-phone-sub{
+      font-size:11px;
+      color:var(--text-mid);
+    }
+    .hero-phone-chip{
+      font-size:10px;
+      color:var(--gold-soft);
+      border:1px solid rgba(201,147,58,0.3);
+      border-radius:999px;
+      padding:2px 8px;
+      align-self:flex-start;
+      margin-top:6px;
+    }
+    .hero-phone-card{
+      background:rgba(2,4,8,0.7);
+      border-radius:10px;
+      padding:8px 10px;
+      border:1px solid rgba(100,160,220,0.28);
+      font-size:10px;
+      margin-bottom:6px;
+    }
+
+    /* SECTION BASE */
+    section{
+      padding:32px 0;
+      border-top:1px solid rgba(100,160,220,0.12);
+    }
+    .label{
+      font-size:10px;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      color:var(--gold-soft);
+      margin-bottom:8px;
+    }
+    h2{
+      font-family:'Amiri',serif;
+      font-size:24px;
+      margin-bottom:8px;
+    }
+    .lead{
+      font-size:14px;
+      color:var(--text-mid);
+      margin-bottom:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--card-bg);
+      border-radius:6px;
+      border:1px solid var(--border);
+      padding:18px 18px 16px;
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+    }
+    .card p{
+      font-size:13px;
+      color:var(--text-mid);
+    }
+
+    ul.clean{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    ul.clean li{
+      font-size:13px;
+      padding:4px 0;
+      color:rgba(220,232,245,0.9);
+    }
+
+    /* PRICING */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    .price-main{
+      border-color:rgba(201,147,58,0.4);
+      box-shadow:0 0 22px rgba(201,147,58,0.08);
+    }
+    .price-tag{
+      font-size:26px;
+      font-weight:700;
+      margin-bottom:4px;
+    }
+    .price-note{
+      font-size:11px;
+      color:var(--text-mid);
+      margin-bottom:10px;
+    }
+
+    /* TESTIMONIAL */
+    .testi{
+      font-size:13px;
+      color:var(--text-mid);
+      margin-bottom:6px;
+    }
+    .testi-name{
+      font-size:12px;
+      color:var(--gold-soft);
+    }
+
+    /* FOOTER */
+    footer{
+      padding-top:28px;
+      font-size:11px;
+      color:var(--text-mid);
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:10px;
+      border-top:1px solid rgba(100,160,220,0.16);
+      margin-top:28px;
+    }
+
+    @media(max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+      }
+      .hero-phone{
+        width:78%;
+      }
+      .grid-3{
+        grid-template-columns:1fr 1fr;
+      }
+      .pricing-grid{
+        grid-template-columns:1fr;
+      }
+    }
+    @media(max-width:640px){
+      .grid-3,.grid-2{
+        grid-template-columns:1fr;
+      }
+      .hero-phone{
+        width:88%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div>
+        <div class="nav-brand-ar">ذيب</div>
+        <div class="nav-brand-en">Dheeb Sleep Intelligence</div>
+      </div>
+      <div class="nav-actions">
+        <span>تطبيق iOS · Android</span>
+        <a href="#download" class="btn-o" style="padding:6px 14px;">تحميل</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-tag">◈ أول نظام نوم عصبي‑روحاني</div>
+        <h1>
+          افهم أحلامك،
+          وأطفئ كوابيسك
+          مع <span class="g">ذيب</span>
+        </h1>
+        <p>
+          ذيب يجمع بين <span class="b">العلم العصبي</span> و
+          <span class="g">الرقية الشرعية المعتمدة</span>،
+          ليحوّل ليالي القلق والكوابيس إلى نوم هادئ وقلب مطمئن.
+        </p>
+        <div class="hero-actions">
+          <a href="#download" class="btn-p">ابدأ مجاناً ←</a>
+          <a href="#how" class="btn-o">شاهد كيف يعمل</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric">
+            <div class="num g">85%</div>
+            <div class="metric-label">تقليل الكوابيس</div>
+          </div>
+          <div class="metric">
+            <div class="num g">4.9</div>
+            <div class="metric-label">تقييم المستخدمين</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-mock">
+        <div class="hero-badge">تحليل حلم حي</div>
+        <div class="hero-phone">
+          <div class="hero-phone-inner">
+            <div>
+              <div class="hero-phone-title">"حلمت أني أغرق في ماء عميق"</div>
+              <div class="hero-phone-sub">تم رصد ارتفاع في نبض القلب وانقطاع في التنفس.</div>
+              <div class="hero-phone-chip">Neuro + Ruqya · فعال</div>
+            </div>
+            <div>
+              <div class="hero-phone-card">
+                <strong>التحليل العصبي:</strong><br>
+                نوم على البطن ← ضغط على الحجاب الحاجز ← نقص أكسجين.
+              </div>
+              <div class="hero-phone-card">
+                <strong>الحل + الرقية:</strong><br>
+                انقلب على جنبك الأيمن، واستمع إلى أذكار النوم المخصصة.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem">
+      <div class="label">المشكلة</div>
+      <h2>الكوابيس أزمة صامتة بلا حلول متكاملة</h2>
+      <p class="lead">
+        ملايين يعانون من كوابيس متكررة، وبين تطبيقات تتبع النوم فقط وحلول روحانية غير مدعومة طبياً، يبقى المسلم بلا حل يجمع بين العقل والإيمان.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>انتشار واسع</h3>
+          <p>نِسَب عالية من الناس يعانون من كوابيس متكررة سنوياً، تؤثر على المزاج، الإنتاجية، والصحة النفسية.</p>
+        </div>
+        <div class="card">
+          <h3>حلول سطحية</h3>
+          <p>تطبيقات النوم الحالية تكتفي بالتتبع والرسوم البيانية دون فهم سببي أو تدخل لحظي أثناء الكابوس.</p>
+        </div>
+        <div class="card">
+          <h3>فجوة للمسلمين</h3>
+          <p>لا توجد أدوات رقمية متقنة تراعي العقيدة، وتقدم رقية موثوقة مع دعم علمي عصبي في آن واحد.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION / FEATURES -->
+    <section id="features">
+      <div class="label">الحل</div>
+      <h2>ذيب = علم عصبي × إيمان</h2>
+      <p class="lead">
+        نظام متكامل يحلل نومك عصبيًا، ويرد على الكوابيس برقية شرعية موجهة، في اللحظة التي تحتاجها فيها.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="b">طبقة العلم العصبي</h3>
+          <ul class="clean">
+            <li>قراءة بيانات نبض القلب والتنفس ووضعية النوم من خلال الساعة أو الهاتف.</li>
+            <li>اكتشاف أنماط الكوابيس (تسارع نبض، حركة مفاجئة) قبل الاستيقاظ المفزوع.</li>
+            <li>اقتراح تعديل الوضعية والتنفس لتخفيف الضيق أثناء النوم.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="g">طبقة الرقية المعتمدة</h3>
+          <ul class="clean">
+            <li>مجموعة مختارة من الأدعية والأذكار من القرآن والسنة لأحوال النوم والخوف.</li>
+            <li>تشغيل أذكار مخصصة لنوع الكابوس المرصود بدون إزعاج الشريك في الغرفة.</li>
+            <li>ذكر مصدر الحديث ورقمه بوضوح لطمأنة المستخدم من سلامة المحتوى.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="label">كيف يعمل</div>
+      <h2>من الحلم إلى الحل في خطوات بسيطة</h2>
+      <p class="lead">
+        واجهة بسيطة، لكن خلفها محرّك قوي يفهم الإشارات العصبية ويترجمها إلى رقية وحلول عملية.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>١. ربط أجهزتك</h3>
+          <p>اربط حسابك على Apple Watch أو أي جهاز مدعوم، وفعّل إذن مراقبة النوم بأمان.</p>
+        </div>
+        <div class="card">
+          <h3>٢. اكتشاف الكابوس</h3>
+          <p>يكتشف ذيب ارتفاع النبض واضطراب التنفس أو الحركة المفاجئة أثناء النوم.</p>
+        </div>
+        <div class="card">
+          <h3>٣. تدخل عصبي‑روحاني</h3>
+          <p>يشغل أذكاراً مخصصة، ويرشدك لوضعية نوم أفضل وتنفس أهدأ، لتكسر حلقة الكابوس بلطف.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHARIA / TRUST -->
+    <section id="trust">
+      <div class="label">الجانب الشرعي</div>
+      <h2>رقية موثوقة، لا اجتهادات عشوائية</h2>
+      <p class="lead">
+        جميع الأدعية المختارة من القرآن والسنة، مع توثيق المصدر ورقم الحديث، واحترام كامل للضوابط الشرعية والخصوصية.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>محتوى موثوق</h3>
+          <p>أذكار النوم، وآيات الحفظ، والأدعية الواردة في علاج الخوف والهم، من مصادر معروفة ومعتمدة.</p>
+        </div>
+        <div class="card">
+          <h3>شفافية</h3>
+          <p>كل ذكر يظهر معه المرجع المختصر، ولا يقدم التطبيق أي فتاوى أو تشخيصات روحية.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="label">الاشتراكات</div>
+      <h2>ابدأ مجاناً، وارتقِ متى احتجت</h2>
+      <p class="lead">
+        خطط مرنة للأفراد والعائلات، مع طبقة مجانية كافية لتجربة ذيب وتخفيف الكوابيس الأولى.
+      </p>
+      <div class="pricing-grid">
+        <div class="card price-main">
+          <h3>ذيب المجاني</h3>
+          <div class="price-tag">0 ريال</div>
+          <div class="price-note">للأفراد · بدون بطاقة بنكية</div>
+          <ul class="clean">
+            <li>حتى ٣ تحليلات أحلام في الشهر.</li>
+            <li>تشغيل رقية عامة للنوم الهادئ.</li>
+            <li>ملخص أسبوعي بسيط لحالة الكوابيس.</li>
+          </ul>
+          <div style="margin-top:14px;">
+            <a href="#download" class="btn-p" style="width:100%;justify-content:center;">ابدأ الآن</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>ذيب بريميوم</h3>
+          <div class="price-tag">٩٩ ريال / شهر</div>
+          <div class="price-note">تحليل عميق + تكامل Wearables</div>
+          <ul class="clean">
+            <li>تحليل غير محدود للأحلام والكوابيس.</li>
+            <li>تشغيل رقية موجهة حسب نوع الكابوس.</li>
+            <li>تقارير مفصلة + خطة نوم شخصية.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testi">
+      <div class="label">آراء المستخدمين</div>
+      <h2>قصص حقيقية من ليالٍ أقل خوفاً</h2>
+      <div class="grid-3">
+        <div class="card">
+          <p class="testi">"من أول أسبوع حسّيت أن عدد الكوابيس قلّ بشكل ملحوظ، وصرت أنام وأنا أقرأ الأذكار بهدوء."</p>
+          <div class="testi-name">— أم محمد، ٣٤ سنة</div>
+        </div>
+        <div class="card">
+          <p class="testi">"أحب أن التطبيق يشرح لي سبب الكابوس من منظور علمي، ويعطيني ذكر مناسب في نفس اللحظة."</p>
+          <div class="testi-name">— عبد الله، ٢٩ سنة</div>
+        </div>
+        <div class="card">
+          <p class="testi">"أخيراً حل يحترم ديني وعقلي في نفس الوقت، بدون مبالغة أو محتوى ديني غير موثوق."</p>
+          <div class="testi-name">— سارة، ٢٦ سنة</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD / CTA -->
+    <section id="download">
+      <div class="label">ابدأ الآن</div>
+      <h2>نومة الليلة قد تكون أهدأ</h2>
+      <p class="lead">
+        نزّل ذيب، اربطه بساعتك أو هاتفك، واترك الباقي على نظام نوم عصبي‑روحاني صمّم للمسلمين أولاً.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-p">App Store</a>
+        <a href="#" class="btn-p" style="background:#0f9d58;border-color:#0f9d58;">Google Play</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© 2026 ذيب — نظام النوم العصبي الروحاني</div>
+      <div>الخصوصية · الشروط · تواصل</div>
+    </footer>
+  </div>
+</body>
+</html>
